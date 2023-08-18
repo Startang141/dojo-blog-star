@@ -1,31 +1,20 @@
 import { useState } from "react";
 
 const Home = () => {
-    const handleClick = (e) => {
-        console.log('hello bang', e);
-    }
-
-    const handleClickAgain = (name) => {
-        console.log('hello'+ name);
-    }   
-
-
-    // Menggunakan UseState Untuk reactive
-    const [nama, setNama] = useState('BINTANG');
-    const [umur, setUmur] = useState(16);
-    
-    const ClickChange = () => {
-        setNama('WAWAWN');
-        setUmur(99);
-    }
+    const [blog, setBlog] = useState([
+        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+    ])
 
     return ( 
         <div className="home">
-            <h2>HomePage</h2>
-            <button onClick={handleClick}>Click Me</button>
-            <button onClick={() => handleClickAgain('wawan')}>Click Me Again</button>
-            <p>{ nama } SUDAH HIDUP { umur }</p>
-            <button onClick={ClickChange}>Change Me</button>
+            {blog.map((blog)=>(
+                <div className="blog-preview" key={blog.id}>
+                    <h2>{blog.title}</h2>
+                    <p>Written by {blog.author}</p>
+                </div>
+            ))}
         </div>
      );
 }
